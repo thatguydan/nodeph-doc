@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Nodeph-doc by thatguydan</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="#intro">Intro</a></li>
+          <li class="downloads"><a href="#apps">Espionage</a></li>
+          <li class="downloads"><a href="#apps">HAL9000</a></li>
+          <li class="downloads"><a href="#drivers">Driver Track</a></li>
+          <li class="downloads"><a href="#sensors">Sensor Track</a></li>
+
+          <li class="title">TRACKS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+      <a id="intro"></a>
+      <p></p>
+      <section>
+  <h1>Node.PH Ninja Blocks Workshop</h1>
+<p>Welcome! Here is quickstart information to get you up and running as quickly as possible. Please click the track you are running on the top right.</p>
+</section>
+<section>
+  <a id="sensors"></a>
+  <h2>Sensor Track.</h2>
+</section>
+<section>
+  <a id="drivers"></a>
+  <h2>Driver Track.</h2>
+<p>In this track we are going to hook some hardware up to the Ninja platform.
+<br />
+<h4>Step 1 - get the client code</h4>
+<code><pre>$ git clone https://github.com/ninjablocks/client.git
+$ cd client
+$ ./bin/install.sh
+</code></pre>
+
+
+<h4>Step 2 - get the Ninja CLI tool</h4>
+<code><pre>$ npm install -g ninja-toolbelt
+</code></pre>
+
+
+<h4>Step 3 - create a driver scaffold</h4>
+<code><pre>$ ninja create drivers/my-first-driver
+$ cd drivers/my-first-driver
+$ npm init
+$ cd ../..
+</code></pre>
+
+<h4>Step 4 - Run the client code in hacking mode</h4>
+<code><pre>$ NODE_ENV=hacking node client
+</code></pre>
+
+<p>The start of stdout should look like this:
+<code><pre>
+$ NODE_ENV=hacking node client
+[Mon, 22 Apr 2013 21:18:06 GMT] (DEBUG) Binding default loadToken method
+[Mon, 22 Apr 2013 21:18:06 GMT] (DEBUG) Binding default saveToken method
+[Mon, 22 Apr 2013 21:18:06 GMT] (DEBUG) Binding default loadSerial method
+[Mon, 22 Apr 2013 21:18:06 GMT] (DEBUG) Binding default saveSerial method
+[Mon, 22 Apr 2013 21:18:06 GMT] (info) Successfully loaded token from file
+[Mon, 22 Apr 2013 21:18:06 GMT] (info) Successfully loaded serial from file
+[Mon, 22 Apr 2013 21:18:06 GMT] (info) This Ninja's Serial: <strong>XXXXXXXXXXXXXXXX</strong>
+[Mon, 22 Apr 2013 21:18:06 GMT] (info) loadModule: platform
+[Mon, 22 Apr 2013 21:18:06 GMT] (DEBUG) versioning: using version callback (platform)
+[Mon, 22 Apr 2013 21:18:06 GMT] (info) platform: No device specified
+</code></pre>
+
+  <p>Copy the serial number to your clipboard, in this case <strong>XXXXXXXXXXXXXXXX</strong>, you will need it in the next step.</p>
+
+<h4>Step 5 - pair this client</h4>
+<p>Go to <a href="https://a.ninja.is/">a.ninja.is</a> and sign in. When you have reached the home screen, click the this button in the top right of the screen:</p>
+
+<p><img src="images/pairButton_compact.png" /></p>
+
+<p>Next, paste the serial number you copied in the previous step in the dialogue box and hit "Submit". Your browser should look like this:</p>
+
+<p><img src="images/ConfirmedPairing_medium.png" /></p>
+
+<p>And your client std should look like this:
+<code><pre>
+[Mon, 22 Apr 2013 21:18:10 GMT] (info) Attempting to activate...
+[Mon, 22 Apr 2013 21:31:38 GMT] (DEBUG) Attempting to save token to file...
+[Mon, 22 Apr 2013 21:31:38 GMT] (info) Successfully saved token to file
+[Mon, 22 Apr 2013 21:31:38 GMT] (info) Received authorization, confirming...
+[Mon, 22 Apr 2013 21:31:38 GMT] (info) Confirmed authorization
+<strong>[Mon, 22 Apr 2013 21:31:38 GMT] (info) Please restart this process to connect!</strong>
+➜  client git:(master) ✗
+</code></pre>
+<strong>Important</strong>: You will need to restart the client in order to connect as a paired client.</p>
+
+
+</section>
+<section>
+  <a id="apps"></a>
+  <h2>HAL9000 / Espionage</h2>
+</section>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+  </body>
+</html>
+
