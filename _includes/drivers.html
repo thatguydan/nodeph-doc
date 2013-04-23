@@ -1,6 +1,10 @@
 <h2>Driver Track.</h2>
-<p>In this track we are going to hook some hardware up to the Ninja platform.
-<br />
+<p>&nbsp;</p>
+<p>In this track we are going to hook some hardware up to the Ninja platform. Drivers are pieces of code that run in the Ninja client and present devices to the platform.</p>
+
+<h3>Getting Started</h3>
+
+<p>&nbsp;</p>
 <h4>Step 1 - get the client code</h4>
 <code><pre>$ git clone https://github.com/ninjablocks/client.git
 $ cd client
@@ -8,11 +12,13 @@ $ ./bin/install.sh
 </code></pre>
 
 
+<p>&nbsp;</p>
 <h4>Step 2 - get the Ninja CLI tool</h4>
 <code><pre>$ npm install -g ninja-toolbelt
 </code></pre>
 
 
+<p>&nbsp;</p>
 <h4>Step 3 - create a driver scaffold</h4>
 <code><pre>$ ninja create drivers/my-first-driver
 $ cd drivers/my-first-driver
@@ -20,6 +26,7 @@ $ npm init
 $ cd ../..
 </code></pre>
 
+<p>&nbsp;</p>
 <h4>Step 4 - Run the client code in hacking mode</h4>
 <code><pre>$ NODE_ENV=hacking node client
 </code></pre>
@@ -41,8 +48,9 @@ $ NODE_ENV=hacking node client
 
   <p>Copy the serial number to your clipboard, in this case <strong>XXXXXXXXXXXXXXXX</strong>, you will need it in the next step.</p>
 
+<p>&nbsp;</p>
 <h4>Step 5 - pair this client</h4>
-<p>Go to <a href="https://a.ninja.is/">a.ninja.is</a> and sign in. When you have reached the home screen, click the this button in the top right of the screen:</p>
+<p>Go to <a target="_blank" href="https://a.ninja.is/">a.ninja.is</a> and sign in. When you have reached the home screen, click the 'Pair Block' button in the top right of the screen:</p>
 
 <p><img src="images/pairButton_compact.png" /></p>
 
@@ -50,7 +58,7 @@ $ NODE_ENV=hacking node client
 
 <p><img src="images/ConfirmedPairing_medium.png" /></p>
 
-<p>And your client std should look like this:
+<p>And your client stdout should look like this:
 <code><pre>
 [Mon, 22 Apr 2013 21:18:10 GMT] (info) Attempting to activate...
 [Mon, 22 Apr 2013 21:31:38 GMT] (DEBUG) Attempting to save token to file...
@@ -62,3 +70,27 @@ $ NODE_ENV=hacking node client
 </code></pre>
 <strong>Important</strong>: You will need to restart the client in order to connect as a paired client.</p>
 
+<p>&nbsp;</p>
+<h4>Step 6 - see your driver on the dashboard</h4>
+<p>Go back to <a target="_blank" href="https://a.ninja.is/home">a.ninja.is/home</a>. You should see a widget that looks like this:</p>
+
+<p><img width="300" src="images/widget.png" /></p>
+
+<p>&nbsp;</p>
+<h4>Step 7 - look through some sample drivers for inspiration</h4>
+
+<ul>
+  <li>Sample driver: <a target="_blank" href="https://github.com/wandergeek/linux-cpu">Report CPU usge</a></li>
+  <li>Sample driver: <a target="_blank" href="https://github.com/nexxy/ninja-isight">Mac iSight Driver</a></li>
+  <li>Sample driver: <a target="_blank" href="https://github.com/thatguydan/ninja-hue">Controlling Philips Hue</a></li>
+  <li>Sample driver: <a target="_blank" href="https://github.com/faulkner/ninja-wifi-scanner">Wifi Scanner that reports analytics about nearby wifi devices</a></li>
+</ul>
+
+<p>&nbsp;</p>
+<h3>Gotchas</h3>
+<ul>
+  <li>DA (data value) MUST be a string</li>
+  <li>G (port/channel) MUST be a string</li>
+  <li>V (vendor ID) MUST be a number</li>
+  <li>D (device ID) MUST be a number</li>
+</ul>

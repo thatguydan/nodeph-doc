@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Nodeph-doc by thatguydan</title>
+    <title>Ninja Blocks Node.PH Workshop Quickstart</title>
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -21,8 +21,7 @@
       <div id="header">
         <nav>
           <li class="fork"><a href="#intro">Intro</a></li>
-          <li class="downloads"><a href="#apps">Espionage</a></li>
-          <li class="downloads"><a href="#apps">HAL9000</a></li>
+          <li class="downloads"><a href="#apps">HAL9000 / Espionage</a></li>
           <li class="downloads"><a href="#drivers">Driver Track</a></li>
           <li class="downloads"><a href="#sensors">Sensor Track</a></li>
 
@@ -36,6 +35,8 @@
       <section>
   <h1>Node.PH Ninja Blocks Workshop</h1>
 <p>Welcome! Here is quickstart information to get you up and running as quickly as possible. Please click the track you are running on the top right.</p>
+
+
 </section>
 <section>
   <a id="sensors"></a>
@@ -44,8 +45,12 @@
 <section>
   <a id="drivers"></a>
   <h2>Driver Track.</h2>
-<p>In this track we are going to hook some hardware up to the Ninja platform.
-<br />
+<p>&nbsp;</p>
+<p>In this track we are going to hook some hardware up to the Ninja platform. Drivers are pieces of code that run in the Ninja client and present devices to the platform.</p>
+
+<h3>Getting Started</h3>
+
+<p>&nbsp;</p>
 <h4>Step 1 - get the client code</h4>
 <code><pre>$ git clone https://github.com/ninjablocks/client.git
 $ cd client
@@ -53,11 +58,13 @@ $ ./bin/install.sh
 </code></pre>
 
 
+<p>&nbsp;</p>
 <h4>Step 2 - get the Ninja CLI tool</h4>
 <code><pre>$ npm install -g ninja-toolbelt
 </code></pre>
 
 
+<p>&nbsp;</p>
 <h4>Step 3 - create a driver scaffold</h4>
 <code><pre>$ ninja create drivers/my-first-driver
 $ cd drivers/my-first-driver
@@ -65,6 +72,7 @@ $ npm init
 $ cd ../..
 </code></pre>
 
+<p>&nbsp;</p>
 <h4>Step 4 - Run the client code in hacking mode</h4>
 <code><pre>$ NODE_ENV=hacking node client
 </code></pre>
@@ -86,8 +94,9 @@ $ NODE_ENV=hacking node client
 
   <p>Copy the serial number to your clipboard, in this case <strong>XXXXXXXXXXXXXXXX</strong>, you will need it in the next step.</p>
 
+<p>&nbsp;</p>
 <h4>Step 5 - pair this client</h4>
-<p>Go to <a href="https://a.ninja.is/">a.ninja.is</a> and sign in. When you have reached the home screen, click the this button in the top right of the screen:</p>
+<p>Go to <a target="_blank" href="https://a.ninja.is/">a.ninja.is</a> and sign in. When you have reached the home screen, click the 'Pair Block' button in the top right of the screen:</p>
 
 <p><img src="images/pairButton_compact.png" /></p>
 
@@ -95,7 +104,7 @@ $ NODE_ENV=hacking node client
 
 <p><img src="images/ConfirmedPairing_medium.png" /></p>
 
-<p>And your client std should look like this:
+<p>And your client stdout should look like this:
 <code><pre>
 [Mon, 22 Apr 2013 21:18:10 GMT] (info) Attempting to activate...
 [Mon, 22 Apr 2013 21:31:38 GMT] (DEBUG) Attempting to save token to file...
@@ -107,11 +116,110 @@ $ NODE_ENV=hacking node client
 </code></pre>
 <strong>Important</strong>: You will need to restart the client in order to connect as a paired client.</p>
 
+<p>&nbsp;</p>
+<h4>Step 6 - see your driver on the dashboard</h4>
+<p>Go back to <a target="_blank" href="https://a.ninja.is/home">a.ninja.is/home</a>. You should see a widget that looks like this:</p>
 
+<p><img width="300" src="images/widget.png" /></p>
+
+<p>&nbsp;</p>
+<h4>Step 7 - look through some sample drivers for inspiration</h4>
+
+<ul>
+  <li>Sample driver: <a target="_blank" href="https://github.com/wandergeek/linux-cpu">Report CPU usge</a></li>
+  <li>Sample driver: <a target="_blank" href="https://github.com/nexxy/ninja-isight">Mac iSight Driver</a></li>
+  <li>Sample driver: <a target="_blank" href="https://github.com/thatguydan/ninja-hue">Controlling Philips Hue</a></li>
+  <li>Sample driver: <a target="_blank" href="https://github.com/faulkner/ninja-wifi-scanner">Wifi Scanner that reports analytics about nearby wifi devices</a></li>
+</ul>
+
+<p>&nbsp;</p>
+<h3>Gotchas</h3>
+<ul>
+  <li>DA (data value) MUST be a string</li>
+  <li>G (port/channel) MUST be a string</li>
+  <li>V (vendor ID) MUST be a number</li>
+  <li>D (device ID) MUST be a number</li>
+</ul>
 </section>
 <section>
   <a id="apps"></a>
   <h2>HAL9000 / Espionage</h2>
+
+
+<p>&nbsp;</p>
+<h3>Core Concepts</h3>
+<ul>
+  <li>A 'Ninja app' is a state machine that lives in the cloud.</li>
+  <li>It can send commands to devices, and it receives data from a device via a 'callback'.</li>
+  <li>A 'callback' is a URL you register against a device that the Ninja platform will POST to with data when it receives it. It must be publicly addressable.</li>
+  <li>We will authenticate our apps today with your <code>user_access_token</code></li>
+</ul>
+
+<p>&nbsp;</p>
+<h3>Useful links</h3>
+<p>
+<ul>
+  <li><a target="_blank" href="https://github.com/ninjablocks/node-ninja-blocks">Nina Blocks Node Library README</a></li>
+  <li><a target="_blank" href="http://ninjablocks.com/blogs/news/7061118-dial-o-spresso-a-phone-controlled-coffee-machine">Dial-o-spresso</a> - Ninja powered coffee machine hack. Does not use callbacks (<a href="https://gist.github.com/askpete/3930720"target="_blank">code</a>)</li>
+  <li><a target="_blank" href="http://www.youtube.com/watch?v=cedbZiTv0hk">Video tutorial on creating an app in 60 seconds</a></li>
+</ul>
+</p>
+
+<p>&nbsp;</p>
+<h4>Step 1 - get your user_access_token</h4>
+<p>You retrieve this in the API tab of the <a target="_blank" href="https://a.ninja.is/hacking">settings page</a>. It is the 'API Access Token'.</p>
+
+<p>&nbsp;</p>
+<h4>Step 2 - clone our sample app</h4>
+<code><pre>$ git clone https://github.com/thatguydan/nodeph-sample-app.git
+$ cd nodeph-sample-app
+$ npm install
+</code></pre>
+
+
+<p>&nbsp;</p>
+<h4>Step 3 - Edit the app's configuration</h4>
+<code><pre>$ vim routes/index.js
+</code></pre>
+
+<p>Edit line <a target="_blank" href="https://github.com/thatguydan/nodeph-sample-app/blob/master/routes/index.js#L3-L4">3 & 4</a> inserting the user_access_token retrieved in Step 1 and the GUID of the device (will be demoed on stage).</p>
+
+<p>&nbsp;</p>
+<h4>Step 4 - Setup PageKite to tunnel HTTP requests to your local machine.</h4>
+<code><pre>
+$ curl -s https://pagekite.net/pk/ |sudo bash
+</pre></code>
+<strong>Important</strong>: after you have signed up, make sure to run pagekite on port 3000, ie:<br />
+<code><pre>
+$ pagekite.py 3000 your_name_here.pagekite.me
+</pre></code>
+
+<p>&nbsp;</p>
+<h4>Step 5 - run the app</h4>
+<code><pre>$ node app.js
+</code></pre>
+
+<p>&nbsp;</p>
+<h4>Step 6 - Register a callback against the RGB LED device through PageKite.</h4>
+<p>Go back to <a target="_blank" href="https://a.ninja.is/home">the dashboard</a> and find the 'Ninjas Eyes' widget. Click on the cog, and click callback:</p>
+
+<p><img width="300" src="images/callback-widget.png" /></p>
+
+<p>Then add your pagekite url to start receiving callbacks from the Ninja platform. Note in the sample app we have a route for <code>/callback</code>, so you should only need to replace <code>your_name_here</code> in the below screen shot.</p>
+
+<p><img width="300" src="images/callback-modal.png" /></p>
+
+
+<p>&nbsp;</p>
+<h3>Step 7 - Hack around with routes/index.js</h3>
+<p>Try adding callbacks against different devices, and actuating other devices.</p>
+
+<p>&nbsp;</p>
+<h3>Gotchas</h3>
+<ul>
+  <li>Every data value through Ninja MUST be a string.</li>
+  <li>The RF433 MHz device receives strings that look like binary from multiple 'devices'. Due to this, it is necessary to do string equality on callbacks, looking for a known string.</li>
+</ul>
 </section>
     </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
