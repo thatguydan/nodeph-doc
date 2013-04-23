@@ -16,6 +16,14 @@
     <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
+    <style>
+      .uml-diagram {
+        background-color:white;
+        border-radius:4px;
+        opacity:0.95;
+      }
+    </style>
+
   </head>
   <body>
       <div id="header">
@@ -37,16 +45,18 @@
 <p>Welcome! Here is quickstart information to get you up and running as quickly as possible. Please click the track you are running on the top right.</p>
 
 
-</section>
-<section>
+<p><img src="images/main-overview.png" class="uml-diagram"/></p>
+
+  <p>&nbsp;</p>
   <a id="sensors"></a>
   <h2>Sensor Track.</h2>
-</section>
-<section>
+  <p>&nbsp;</p>
   <a id="drivers"></a>
   <h2>Driver Track.</h2>
 <p>&nbsp;</p>
 <p>In this track we are going to hook some hardware up to the Ninja platform. Drivers are pieces of code that run in the Ninja client and present devices to the platform.</p>
+
+<p><img src="images/driver-overview.png" class="uml-diagram"/></p>
 
 <h3>Getting Started</h3>
 
@@ -140,13 +150,13 @@ $ NODE_ENV=hacking node client
   <li>V (vendor ID) MUST be a number</li>
   <li>D (device ID) MUST be a number</li>
 </ul>
-</section>
-<section>
+  <p>&nbsp;</p>
   <a id="apps"></a>
   <h2>HAL9000 / Espionage</h2>
 
-
 <p>&nbsp;</p>
+
+
 <h3>Core Concepts</h3>
 <ul>
   <li>A 'Ninja app' is a state machine that lives in the cloud.</li>
@@ -154,16 +164,10 @@ $ NODE_ENV=hacking node client
   <li>A 'callback' is a URL you register against a device that the Ninja platform will POST to with data when it receives it. It must be publicly addressable.</li>
   <li>We will authenticate our apps today with your <code>user_access_token</code></li>
 </ul>
+<p><img src="images/app-overview.png" class="uml-diagram"/></p>
 
-<p>&nbsp;</p>
-<h3>Useful links</h3>
-<p>
-<ul>
-  <li><a target="_blank" href="https://github.com/ninjablocks/node-ninja-blocks">Nina Blocks Node Library README</a></li>
-  <li><a target="_blank" href="http://ninjablocks.com/blogs/news/7061118-dial-o-spresso-a-phone-controlled-coffee-machine">Dial-o-spresso</a> - Ninja powered coffee machine hack. Does not use callbacks (<a href="https://gist.github.com/askpete/3930720"target="_blank">code</a>)</li>
-  <li><a target="_blank" href="http://www.youtube.com/watch?v=cedbZiTv0hk">Video tutorial on creating an app in 60 seconds</a></li>
-</ul>
-</p>
+<p><img src="images/app-overview-2.png" class="uml-diagram"/></p>
+
 
 <p>&nbsp;</p>
 <h4>Step 1 - get your user_access_token</h4>
@@ -220,6 +224,15 @@ $ pagekite.py 3000 your_name_here.pagekite.me
   <li>Every data value through Ninja MUST be a string.</li>
   <li>The RF433 MHz device receives strings that look like binary from multiple 'devices'. Due to this, it is necessary to do string equality on callbacks, looking for a known string.</li>
 </ul>
+<p>&nbsp;</p>
+
+<h3>Useful links</h3>
+<ul>
+  <li><a target="_blank" href="https://github.com/ninjablocks/node-ninja-blocks">Nina Blocks Node Library README</a></li>
+  <li><a target="_blank" href="http://ninjablocks.com/blogs/news/7061118-dial-o-spresso-a-phone-controlled-coffee-machine">Dial-o-spresso</a> - Ninja powered coffee machine hack. Does not use callbacks (<a href="https://gist.github.com/askpete/3930720"target="_blank">code</a>)</li>
+  <li><a target="_blank" href="http://www.youtube.com/watch?v=cedbZiTv0hk">Video tutorial on creating an app in 60 seconds</a></li>
+</ul>
+
 </section>
     </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
