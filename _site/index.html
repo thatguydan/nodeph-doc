@@ -44,6 +44,18 @@
   <h1>Node.PH Ninja Blocks Workshop</h1>
 <p>Welcome! Here is quickstart information to get you up and running as quickly as possible. Please click the track you are running on the top right.</p>
 
+<!--
+http://yuml.me/diagram/scruffy/class/draw
+[Actuator C]-[Driver C]
+[Sensor B]-[Driver B]
+[Sensor A]-[Driver A]
+[Driver C]->[Ninja Block]
+[Driver B]->[Ninja Block]
+[Driver A]->[Ninja Block]
+[Ninja Block]<->[Ninja Platform]
+[Ninja Platform]<->[Ninja App 1]
+[Ninja Platform]<->[Ninja App 2]
+-->
 
 <p><img src="images/main-overview.png" class="uml-diagram"/></p>
 
@@ -56,6 +68,15 @@
 <h2>Driver Track.</h2>
 <p>In this track we are going to hook some hardware up to the Ninja platform. Drivers are pieces of code that run in the Ninja client and present devices to the platform.</p>
 
+<!--
+http://yuml.me/diagram/scruffy/class/draw
+[Hardware]-[Device Class (lib/Device.js)]
+[Device Class (lib/Device.js)]->[Factory (index.js)]
+[Device Class (lib/Device.js)]-[note: Instantiated by factory and registered with Driver Controller{bg:cornsilk}]
+[Device Class (lib/Device.js)]-[note: emits data and has a write method{bg:cornsilk}]
+[Factory (index.js)]-register event>[Driver Controller]
+
+-->
 <p><img src="images/driver-overview.png" class="uml-diagram"/></p>
 
 <h3>Getting Started</h3>
@@ -162,8 +183,20 @@ $ NODE_ENV=hacking node client
   <li>A 'callback' is a URL you register against a device that the Ninja platform will POST to with data when it receives it. It must be publicly addressable.</li>
   <li>We will authenticate our apps today with your <code>user_access_token</code></li>
 </ul>
+
+<!--
+http://yuml.me/diagram/scruffy/class/draw
+[Device (via Block)]-emits data>[Ninja Platform]
+[Ninja Platform]-POSTS data>[Ninja App 1]
+[Ninja Platform]-[note: The app registers a callback per device{bg:cornsilk}]
+-->
 <p><img src="images/app-overview.png" class="uml-diagram"/></p>
 
+<!--
+http://yuml.me/diagram/scruffy/class/draw
+[Device (via Block)]<-writes data[Ninja Platform]
+[Ninja Platform]<PUTs actuation-[Ninja App 1]
+-->
 <p><img src="images/app-overview-2.png" class="uml-diagram"/></p>
 
 

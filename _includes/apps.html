@@ -8,8 +8,20 @@
   <li>A 'callback' is a URL you register against a device that the Ninja platform will POST to with data when it receives it. It must be publicly addressable.</li>
   <li>We will authenticate our apps today with your <code>user_access_token</code></li>
 </ul>
+
+<!--
+http://yuml.me/diagram/scruffy/class/draw
+[Device (via Block)]-emits data>[Ninja Platform]
+[Ninja Platform]-POSTS data>[Ninja App 1]
+[Ninja Platform]-[note: The app registers a callback per device{bg:cornsilk}]
+-->
 <p><img src="images/app-overview.png" class="uml-diagram"/></p>
 
+<!--
+http://yuml.me/diagram/scruffy/class/draw
+[Device (via Block)]<-writes data[Ninja Platform]
+[Ninja Platform]<PUTs actuation-[Ninja App 1]
+-->
 <p><img src="images/app-overview-2.png" class="uml-diagram"/></p>
 
 
